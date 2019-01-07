@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using VenuesApi.Models;
 using Microsoft.EntityFrameworkCore;
+using VenuesApi.Data.Interfaces;
+using VenuesApi.Data.Repositories;
 
 namespace VenuesApi
 {
@@ -29,6 +31,8 @@ namespace VenuesApi
         {
             services.AddDbContext<VenuesDbContext>(
                 options => options.UseSqlite(Configuration.GetConnectionString("VenuesContext")));
+
+            services.AddScoped<IVenueRepository, VenueRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
