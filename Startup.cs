@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using VenuesApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace VenuesApi
 {
@@ -25,6 +27,8 @@ namespace VenuesApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<VenuesDbContext>(
+                options => options.UseSqlite(Configuration.GetConnectionString("VenuesContext")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
