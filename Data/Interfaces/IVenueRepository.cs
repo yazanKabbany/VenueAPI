@@ -10,5 +10,6 @@ namespace VenuesApi.Data.Interfaces
         IEnumerable<VenueDto> GetVenues(string type);
         bool DeleteVenue(int id);
         bool CreateVenue(VenueDto venue);
+        bool UpdateVenue(VenueDto venue);
     }
 }
