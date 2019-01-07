@@ -5,7 +5,6 @@ namespace VenuesApi.Data.Dto
     public class VenueDto
     {
 
-        [Required]
         public int id { set; get; }
         [Required]
         public string Name { set; get; }
