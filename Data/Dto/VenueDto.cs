@@ -17,7 +17,7 @@ namespace VenuesApi.Data.Dto
         public int Capacity { set; get; }
 
         [Required]
-        public VenueType Type { set; get; }
+        public string Type { set; get; }
 
         [Required]
         public string Privacy { set; get; }
