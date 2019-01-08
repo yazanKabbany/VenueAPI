@@ -8,8 +8,8 @@ namespace VenuesApi.Data.Interfaces
     {
         VenueDto GetVenue(int id);
         IEnumerable<VenueDto> GetVenues(string type);
-        bool DeleteVenue(int id);
-        bool CreateVenue(VenueDto venue);
-        bool UpdateVenue(int id, VenueDto venue);
+        Status DeleteVenue(int id);
+        Status CreateVenue(VenueDto venue);
+        Status UpdateVenue(int id, VenueDto venue);
     }
 }

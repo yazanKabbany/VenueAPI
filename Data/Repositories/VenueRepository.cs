@@ -13,7 +13,7 @@ namespace VenuesApi.Data.Repositories
         {
         }
         //Create a venue or returns false
-        public bool CreateVenue(VenueDto venueDto)
+        public Status CreateVenue(VenueDto venueDto)
         {
             VenueType type;
             VenuePrivacy privacy;
@@ -22,7 +22,7 @@ namespace VenuesApi.Data.Repositories
             ||
             !Enum.TryParse<VenuePrivacy>(venueDto.Privacy, true, out privacy))
             {
-                return false;
+                return Status.Error;
             }
             try
             {
@@ -36,26 +36,26 @@ namespace VenuesApi.Data.Repositories
                 };
                 Context.Add(venue);
                 Context.SaveChanges();
-                return true;
+                return Status.Success;
             }
             catch (Exception)
             {
-                return false;
+                return Status.Error;
             }
         }
 
         //delete venue with given id
         //or returns false if no such venue
-        public bool DeleteVenue(int id)
+        public Status DeleteVenue(int id)
         {
             var venue = Context.Venues.SingleOrDefault(v => v.id == id);
             if (venue == null)//no such venue
             {
-                return false;
+                return Status.NotFound;
             }
             Context.Remove(venue);//delete venue
             Context.SaveChanges();
-            return true;
+            return Status.Success;
         }
         //return venue with given id or null if no such venue
         public VenueDto GetVenue(int id)
@@ -115,12 +115,12 @@ namespace VenuesApi.Data.Repositories
         }
 
         //update a venue or return false
-        public bool UpdateVenue(int id, VenueDto venueDto)
+        public Status UpdateVenue(int id, VenueDto venueDto)
         {
             var venue = Context.Venues.SingleOrDefault(v => v.id == id);
             if (venue == null)
             {
-                return false;
+                return Status.NotFound;
             }
             VenueType type;
             VenuePrivacy privacy;
@@ -130,7 +130,7 @@ namespace VenuesApi.Data.Repositories
             ||
             !Enum.TryParse<VenuePrivacy>(venueDto.Privacy, true, out privacy))
             {
-                return false;
+                return Status.Error;
             }
             //update venue data
             venue.Name = venueDto.Name;
@@ -141,7 +141,7 @@ namespace VenuesApi.Data.Repositories
 
             Context.Update(venue);
             Context.SaveChanges();
-            return true;
+            return Status.Success;
         }
     }
 }
