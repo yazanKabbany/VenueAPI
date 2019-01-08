@@ -59,7 +59,7 @@ namespace VenuesApi.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var status = VenueRepository.UpdateVenue(id, venueDto);
             if(status == Status.Error)
