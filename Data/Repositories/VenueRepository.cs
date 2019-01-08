@@ -12,7 +12,7 @@ namespace VenuesApi.Data.Repositories
         public VenueRepository(VenuesDbContext context) : base(context)
         {
         }
-        //Create a venue or returns false
+        //Create a venue or return 0
         public int CreateVenue(VenueDto venueDto)
         {
             VenueType type;
@@ -45,7 +45,6 @@ namespace VenuesApi.Data.Repositories
         }
 
         //delete venue with given id
-        //or returns false if no such venue
         public Status DeleteVenue(int id)
         {
             var venue = Context.Venues.SingleOrDefault(v => v.id == id);
