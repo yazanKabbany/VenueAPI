@@ -2,7 +2,7 @@ namespace VenuesApi.Data
 {
     public enum Status
     {
-        ObjectNotFound,
+        NotFound,
         Success,
         Error
     }
