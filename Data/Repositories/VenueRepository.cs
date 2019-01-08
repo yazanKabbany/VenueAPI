@@ -72,7 +72,7 @@ namespace VenuesApi.Data.Repositories
                     Address = venue.Address,
                     Capacity = venue.Capacity,
                     Type = venue.Type.ToString(),
-                    Privacy = venue.ToString()
+                    Privacy = venue.Privacy.ToString()
                 };
                 return venueDto;
             }
