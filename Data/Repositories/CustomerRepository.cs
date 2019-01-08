@@ -69,7 +69,7 @@ namespace VenuesApi.Data.Repositories
                 id = customer.id,
                 Name = customer.Name,
                 Email = customer.Email
-            });
+            }).ToList();
             return customerDtoList;
         }
         //update customer
