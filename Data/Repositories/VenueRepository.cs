@@ -63,7 +63,7 @@ namespace VenuesApi.Data.Repositories
 
             //query for the venue
             var venue = Context.Venues.SingleOrDefault(v => v.id == id);
-            if(venue == null)
+            if (venue == null)
             {
                 return null;
             }
@@ -78,68 +78,68 @@ namespace VenuesApi.Data.Repositories
                 Privacy = venue.Privacy.ToString()
             };
             return venueDto;
-        }
-    }
-    //get all venues
-    public IEnumerable<VenueDto> GetVenues(string typeString)
-    {
-        VenueType type = 0;
-        if (!String.IsNullOrEmpty(typeString) && !Enum.TryParse<VenueType>(typeString, true, out type))
-        {
-            //return an empty list if the type is invalid
-            return new List<VenueDto>();
-        }
 
-        //query for all venues  with given type
-        //or query for all venues if no type was given
-        var venueDtoList = Context.Venues
-        .Where(venue =>
-            String.IsNullOrEmpty(typeString)
-            ||
-            venue.Type == type
-            )
-        .Select(venue =>
-            new VenueDto()
+        }
+        //get all venues
+        public IEnumerable<VenueDto> GetVenues(string typeString)
+        {
+            VenueType type = 0;
+            if (!String.IsNullOrEmpty(typeString) && !Enum.TryParse<VenueType>(typeString, true, out type))
             {
-                id = venue.id,
-                Name = venue.Name,
-                Address = venue.Address,
-                Capacity = venue.Capacity,
-                Type = venue.Type.ToString(),
-                Privacy = venue.Privacy.ToString()
+                //return an empty list if the type is invalid
+                return new List<VenueDto>();
             }
-        ).ToList();
-        return venueDtoList;
-    }
 
-    //update a venue 
-    public Status UpdateVenue(int id, VenueDto venueDto)
-    {
-        var venue = Context.Venues.SingleOrDefault(v => v.id == id);
-        if (venue == null)
-        {
-            return Status.NotFound;
+            //query for all venues  with given type
+            //or query for all venues if no type was given
+            var venueDtoList = Context.Venues
+            .Where(venue =>
+                String.IsNullOrEmpty(typeString)
+                ||
+                venue.Type == type
+                )
+            .Select(venue =>
+                new VenueDto()
+                {
+                    id = venue.id,
+                    Name = venue.Name,
+                    Address = venue.Address,
+                    Capacity = venue.Capacity,
+                    Type = venue.Type.ToString(),
+                    Privacy = venue.Privacy.ToString()
+                }
+            ).ToList();
+            return venueDtoList;
         }
-        VenueType type;
-        VenuePrivacy privacy;
 
-        //parse type and privacy
-        if (!Enum.TryParse<VenueType>(venueDto.Type, true, out type)
-        ||
-        !Enum.TryParse<VenuePrivacy>(venueDto.Privacy, true, out privacy))
+        //update a venue 
+        public Status UpdateVenue(int id, VenueDto venueDto)
         {
-            return Status.Error;
-        }
-        //update venue data
-        venue.Name = venueDto.Name;
-        venue.Address = venueDto.Address;
-        venue.Capacity = venueDto.Capacity;
-        venue.Type = type;
-        venue.Privacy = privacy;
+            var venue = Context.Venues.SingleOrDefault(v => v.id == id);
+            if (venue == null)
+            {
+                return Status.NotFound;
+            }
+            VenueType type;
+            VenuePrivacy privacy;
 
-        Context.Update(venue);
-        Context.SaveChanges();
-        return Status.Success;
+            //parse type and privacy
+            if (!Enum.TryParse<VenueType>(venueDto.Type, true, out type)
+            ||
+            !Enum.TryParse<VenuePrivacy>(venueDto.Privacy, true, out privacy))
+            {
+                return Status.Error;
+            }
+            //update venue data
+            venue.Name = venueDto.Name;
+            venue.Address = venueDto.Address;
+            venue.Capacity = venueDto.Capacity;
+            venue.Type = type;
+            venue.Privacy = privacy;
+
+            Context.Update(venue);
+            Context.SaveChanges();
+            return Status.Success;
+        }
     }
-}
 }
