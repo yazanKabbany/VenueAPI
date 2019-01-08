@@ -33,6 +33,7 @@ namespace VenuesApi
                 options => options.UseSqlite(Configuration.GetConnectionString("VenuesContext")));
 
             services.AddScoped<IVenueRepository, VenueRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
