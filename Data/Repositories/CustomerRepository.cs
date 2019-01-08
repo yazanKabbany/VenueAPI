@@ -81,7 +81,7 @@ namespace VenuesApi.Data.Repositories
                 return Status.NotFound;
             }
             customer.Name = customerDto.Name;
-            customer.Email = customerDto.Name;
+            customer.Email = customerDto.Email;
             Context.Update(customer);
             Context.SaveChanges();
             return Status.Success;
