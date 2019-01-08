@@ -43,7 +43,7 @@ namespace VenuesApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var id = VenueRepository.CreateVenue(venueDto);
             if (id == 0)
