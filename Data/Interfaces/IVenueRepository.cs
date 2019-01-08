@@ -9,7 +9,7 @@ namespace VenuesApi.Data.Interfaces
         VenueDto GetVenue(int id);
         IEnumerable<VenueDto> GetVenues(string type);
         Status DeleteVenue(int id);
-        Status CreateVenue(VenueDto venue);
+        int CreateVenue(VenueDto venue);
         Status UpdateVenue(int id, VenueDto venue);
     }
 }

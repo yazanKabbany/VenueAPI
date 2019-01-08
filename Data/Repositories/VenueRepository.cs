@@ -13,7 +13,7 @@ namespace VenuesApi.Data.Repositories
         {
         }
         //Create a venue or returns false
-        public Status CreateVenue(VenueDto venueDto)
+        public int CreateVenue(VenueDto venueDto)
         {
             VenueType type;
             VenuePrivacy privacy;
@@ -22,7 +22,7 @@ namespace VenuesApi.Data.Repositories
             ||
             !Enum.TryParse<VenuePrivacy>(venueDto.Privacy, true, out privacy))
             {
-                return Status.Error;
+                return 0;
             }
             try
             {
@@ -36,11 +36,11 @@ namespace VenuesApi.Data.Repositories
                 };
                 Context.Add(venue);
                 Context.SaveChanges();
-                return Status.Success;
+                return venue.id;
             }
             catch (Exception)
             {
-                return Status.Error;
+                return 0;
             }
         }
 
