@@ -22,10 +22,3 @@ namespace VenuesApi.Models
 
     }
 }
-
-public enum ReservationType
-{
-    Meeting,
-    Party,
-    Other
-}
