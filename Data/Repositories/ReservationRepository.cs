@@ -105,7 +105,7 @@ namespace VenuesApi.Data.Repositories
         //update reservation
         public Status UpdateReservation(int id, ReservationDto reservationDto)
         {
-            var reservation = Context.Reservations.SingleOrDefault(r => r.id == reservationDto.id);
+            var reservation = Context.Reservations.SingleOrDefault(r => r.id == id);
             if (reservation == null)
             {
                 return Status.NotFound;
@@ -130,17 +130,16 @@ namespace VenuesApi.Data.Repositories
                         &&
                         r.VenueID == reservationDto.VenueID)
                     .SingleOrDefault();
-            if (same_day_reservation != null && same_day_reservation.id != reservationDto.id)
+            if (same_day_reservation != null && same_day_reservation.id != id)
             {
                 return Status.Error;
             }
 
-            reservation.id = reservation.id;
             reservation.Venue = venue;
             reservation.Customer = customer;
-            reservation.EventName = reservation.EventName;
-            reservation.day = reservation.day;
-            reservation.NumberOfPeople = reservation.NumberOfPeople;
+            reservation.EventName = reservationDto.EventName;
+            reservation.day = reservationDto.day;
+            reservation.NumberOfPeople = reservationDto.NumberOfPeople;
 
             Context.Update(reservation);
             Context.SaveChanges();
