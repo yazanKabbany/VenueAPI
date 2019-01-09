@@ -60,7 +60,7 @@ namespace VenuesApi.Data.Repositories
             }
             Context.Remove(reservation);
             Context.SaveChanges();
-            return Status.Error;
+            return Status.Success;
         }
         //get reservation with given id 
         public ReservationDto GetReservation(int id)
