@@ -35,7 +35,12 @@ namespace VenuesApi
             services.AddScoped<IVenueRepository, VenueRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.DateFormatString = "dd/MM/yyyy";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
