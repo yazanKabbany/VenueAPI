@@ -16,18 +16,8 @@ namespace VenuesApi.Data.Dto
         [Required]
         public int NumberOfPeople { set; get; }
 
-        public VenueSummaryDto VenueSummary { set; get; }
+        int VenueID { set; get; }
 
-        public CustomerSummaryDto CustomerSummary { set; get; }
+        int CustomerID { set; get; }
     }
-
-    public class VenueSummaryDto : BaseSummryDto
-    {
-
-    }
-    public class CustomerSummaryDto : BaseSummryDto
-    {
-
-    }
-
 }
