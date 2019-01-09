@@ -7,9 +7,9 @@ using System;
 
 namespace VenuesApi.Data.Repositories
 {
-    public class ReservationRespository : BaseRepository, IReservationRepository
+    public class ReservationRepository : BaseRepository, IReservationRepository
     {
-        public ReservationRespository(VenuesDbContext context) : base(context)
+        public ReservationRepository(VenuesDbContext context) : base(context)
         {
         }
         //create a new reservation and return its id
