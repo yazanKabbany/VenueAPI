@@ -15,7 +15,6 @@ namespace VenuesApi.Data.Dto
         public string EventName { set; get; }
 
         [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
         public DateTime day { set; get; }
 
         [Required]
