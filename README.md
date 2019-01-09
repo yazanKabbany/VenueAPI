@@ -37,4 +37,5 @@ You can follow the [Documentation](https://documenter.getpostman.com/view/634214
 * EventName
 * Day
 * NumberOfPeople
+
 where each reservation takes one day and no 2 reservations can occure at the same day in the same venue
