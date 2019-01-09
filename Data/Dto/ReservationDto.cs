@@ -8,9 +8,9 @@ namespace VenuesApi.Data.Dto
     {
         public int id { set; get; }
         [Required]
-        int VenueID { set; get; }
+        public int VenueID { set; get; }
         [Required]
-        int CustomerID { set; get; }
+        public int CustomerID { set; get; }
         [Required]
         public string EventName { set; get; }
 
