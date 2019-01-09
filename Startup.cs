@@ -34,7 +34,7 @@ namespace VenuesApi
 
             services.AddScoped<IVenueRepository, VenueRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ReservationRespository, ReservationRespository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
