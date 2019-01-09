@@ -18,7 +18,7 @@ namespace VenuesApi.Controllers
         {
             ReservationRepository = reservationRepository;
         }
-
+        //Get all reservations
         [HttpGet]
         [ProducesResponseType(200,
         Type = typeof(IEnumerable<ReservationDto>))]
@@ -26,7 +26,7 @@ namespace VenuesApi.Controllers
         {
             return Ok(ReservationRepository.GetReservations(VenueID, CustomerID));
         }
-
+        //get reservation with given id
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(ReservationDto))]
         public IActionResult GetReservation(int id)
@@ -38,7 +38,7 @@ namespace VenuesApi.Controllers
             }
             return Ok(reservation);
         }
-
+        //create a new reservation
         [HttpPost]
         public IActionResult PostReservation([FromBody] ReservationDto reservationDto)
         {
@@ -54,7 +54,7 @@ namespace VenuesApi.Controllers
             reservationDto.id = id;
             return CreatedAtAction(nameof(GetReservation), new { id = id }, reservationDto);
         }
-
+        //update reservation with given id
         [HttpPut("{id}")]
         public IActionResult PutReservation(int id, [FromBody] ReservationDto reservationDto)
         {
@@ -73,7 +73,7 @@ namespace VenuesApi.Controllers
             }
             return NoContent();
         }
-
+        //delete reservation with given id
         [HttpDelete("{id}")]
         public IActionResult DeleteReservation(int id)
         {
