@@ -43,7 +43,7 @@ namespace VenuesApi.Data.Repositories
             Context.SaveChanges();
             return Status.Success;
         }
-        // return venue with given id or null if no such Customer
+        // return customer with given id or null if no such Customer
         public CustomerDto GetCustomer(int id)
         {
             var customer = Context.Customers.SingleOrDefault(v => v.id == id);
